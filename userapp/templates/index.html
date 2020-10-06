@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Users Database</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    </head>
+    <body>
+        <div id="wrapper">
+            <h1>All the Users</h1>
+            <div id="main">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Age</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <th>{{user.id}}</th>
+                            <th>{{user.name}}</th>
+                            <th>{{user.email_address}}</th>
+                            <th>{{user.age}}</th>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div id="bar"></div>
+            <div id="activities">
+                <h1>Add a User</h1>
+                <form action="/adduser" method="POST">
+                    {% csrf_token %}
+                    <label>
+                        First Name
+                        <input type="text" name="first_name" />
+                    </label>
+                    <label>
+                        Last Name
+                        <input type="text" name="last_name" />
+                    </label>
+                    <br>
+                    <label>
+                        Email
+                        <input type="text" name="email" />
+                    </label>
+                    <label>
+                        Age
+                        <input type="number" step="1" name="age" />
+                    </label>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+    </body>
+</html>
