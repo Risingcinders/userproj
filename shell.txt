@@ -1,0 +1,240 @@
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ python manage.py makemigrations
+Migrations for 'dojoninapp':
+  dojoninapp\migrations\0001_initial.py
+    - Create model Dojo
+    - Create model Ninja
+(py3django)
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojoninapp, sessions, userapp
+Running migrations:
+  Applying dojoninapp.0001_initial... OK
+(py3django)
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ python manage.py runserver
+Watching for file changes with StatReloader
+[07/Oct/2020 11:29:30] "GET /user/ HTTP/1.1" 200 2832
+[07/Oct/2020 11:29:30] "GET /static/js/script.js HTTP/1.1" 200 0
+[07/Oct/2020 11:29:30] "GET /static/css/style.css HTTP/1.1" 200 866
+Not Found: /favicon.ico
+[07/Oct/2020 11:29:30] "GET /favicon.ico HTTP/1.1" 404 2077
+[07/Oct/2020 11:29:35] "GET /nin/ HTTP/1.1" 200 2033
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 07, 2020 - 11:29:24
+Django version 2.2.4, using settings 'userproj.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+(py3django)
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ python manage.py shell
+Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:54:40) [MSC v.1900 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from dojoninapp.models import *
+>>> Dojo.objects.create(name="Jamestown",city="Richmond",state="VA")
+  File "<console>", line 1
+    Dojo.objects.create(name="Jamestown",city="Richmond",state="VA")
+    ^
+SyntDojo.objects.create(name="Jamestown",city="Richmond",state="VA")
+  FiDojo.objects.create(name="Jamestown",city="Richmond",state="VA")
+    ^
+SyntaxError: invalid syntax
+>>> Dojo.objects.create(name="Jamestown",city="Richmond",state="VA")
+  File "<console>", line 1
+    Dojo.objects.create(name="Jamestown",city="Richmond",state="VA")
+    ^
+SyntaxError: invalid syntax
+>>> Dojo.objects.create(name="Jamestown",city="Richmond",state="VA")
+<Dojo: Dojo object (1)>
+>>> Dojo.objects.create(name="Hate",city="the",state="CO")
+  File "<console>", line 1
+    Dojo.objects.create(name="Hate",city="the",state="CO")
+    ^
+SyntaxError: invalid syntax
+>>> Dojo.objects.create(name="Hate",city="the",state="CO")
+
+KeyboardInterrupt
+
+  File "<console>", line 1
+    Dojo.objects.create
+    ^
+IndentationError: unexpected indent
+>>> Dojo.objects.create(name="1",city="asdf",state="CD")
+<Dojo: Dojo object (2)>
+>>> Dojo.objects.create(name="peanut",city="ralph",state="vv")
+<Dojo: Dojo object (3)>
+>>> c = Dojo.object.get(id=1)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'Dojo' has no attribute 'object'
+>>> c = Dojo.objects.get(id=1)
+>>> c.delete()
+(1, {'dojoninapp.Ninja': 0, 'dojoninapp.Dojo': 1})
+>>> c = Dojo.objects.get(id=1)
+  File "<console>", line 1
+    c = Dojo.objects.get(id=1)
+                    ^
+SyntaxError: invalid syntax
+>>> c = Dojo.objects.get(id=1)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\CodingDojo\Pythonstack\MyEnvironments\py3django\lib\site-packages\django\db\models\manager.py", line 82, in manager_me
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\CodingDojo\Pythonstack\MyEnvironments\py3django\lib\site-packages\django\db\models\query.py", line 408, in get
+    self.model._meta.object_name
+dojoninapp.models.Dojo.DoesNotExist: Dojo matching query does not exist.
+>>> c = Dojo.objects.get(id=2)
+>>> c.delete()
+(1, {'dojoninapp.Ninja': 0, 'dojoninapp.Dojo': 1})
+>>> c = Dojo.objects.get(id=3)
+>>> c.delete()
+(1, {'dojoninapp.Ninja': 0, 'dojoninapp.Dojo': 1})
+>>> Dojo.objects.create(name="Colonial",city="Williamsburg",state="VA")
+<Dojo: Dojo object (4)>
+>>> Dojo.objects.create(name="Hippyville",city="SanFran",state="CA")
+<Dojo: Dojo object (5)>
+>>> Dojo.objects.create(name="SantaDojo",city="North Pole",state="ND")
+<Dojo: Dojo object (6)>
+>>> Ninja.objects.create(dojo_id=4,first_name="Stan",last_name="Marsh")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\CodingDojo\Pythonstack\MyEnvironments\py3django\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\CodingDojo\Pythonstack\MyEnvironments\py3django\lib\site-packages\django\db\models\query.py", line 420, in create
+    obj = self.model(**kwargs)
+  File "C:\CodingDojo\Pythonstack\MyEnvironments\py3django\lib\site-packages\django\db\models\base.py", line 483, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "C:\CodingDojo\Pythonstack\MyEnvironments\py3django\lib\site-packages\django\db\models\fields\related_descriptors.py", line 211, in __set__
+    self.field.remote_field.model._meta.object_name,
+ValueError: Cannot assign "4": "Ninja.dojo_id" must be a "Dojo" instance.
+>>> c = Dojo.objects.get(id=4)
+>>> Ninja.objects.create(dojo_id=c,first_name="Stan",last_name="Marsh")
+  File "<console>", line 1
+    Ninja.objects.create(dojo_id=c,first_name="Stan",last_name="Marsh")
+                                                                       ^
+SyntaxError: invalid syntax
+>>> Ninja.objects.create(dojo_id=c,first_name="Stan",last_name="Marsh")
+<Ninja: Ninja object (1)>
+>>> Ninja.objects.create(dojo_id=c,first_name="Leah",last_name="Barto")
+  File "<console>", line 1
+    Ninja.objects.create(dojo_id=c,first_name="Leah",last_name="Barto")
+                                                                       ^
+SyntaxError: invalid syntax
+>>> Ninja.objects.create(dojo_id=c,first_name="Leah",last_name="Barto")
+<Ninja: Ninja object (2)>
+>>> Ninja.objects.create(dojo_id=c,first_name="Sean",last_name="Ralph")
+  File "<console>", line 1
+    Ninja.objects.create(dojo_id=c,first_name="Sean",last_name="Ralph")
+                                                                       ^
+SyntaxError: invalid syntax
+>>> Ninja.objects.create(dojo_id=c,first_name="Sean",last_name="Ralph")
+<Ninja: Ninja object (3)>
+>>> d = Dojo.objects.get(id=5)
+>>> e = Dojo.objects.get(id=6)
+>>> Ninja.objects.create(dojo_id=d,first_name="Matt",last_name="Harry")
+  File "<console>", line 1
+    Ninja.objects.create(dojo_id=d,first_name="Matt",last_name="Harry")
+    ^
+SyntaxError: invalid syntax
+>>> Ninja.objects.create(dojo_id=d,first_name="Matt",last_name="Harry")
+<Ninja: Ninja object (4)>
+>>> Ninja.objects.create(dojo_id=d,first_name="Sara",last_name="Laura")
+  File "<console>", line 1
+    Ninja.objects.create(dojo_id=d,first_name="Sara",last_name="Laura")
+                                                                       ^
+SyntaxError: invalid syntax
+>>> Ninja.objects.create(dojo_id=d,first_name="Sara",last_name="Laura")
+<Ninja: Ninja object (5)>
+>>> Ninja.objects.create(dojo_id=d,first_name="Kirt",last_name="Terry")
+  File "<console>", line 1
+    Ninja.objects.create(dojo_id=d,first_name="Kirt",last_name="Terry")
+                                                                       ^
+SyntaxError: invalid syntax
+>>> Ninja.objects.create(dojo_id=d,first_name="Kirt",last_name="Terry")
+<Ninja: Ninja object (6)>
+>>> Ninja.objects.create(dojo_id=e,first_name="Sven",last_name="Soren")
+  File "<console>", line 1
+    Ninja.objects.create(dojo_id=e,first_name="Sven",last_name="Soren")
+                                                                       ^
+SyntaxError: invalid syntax
+>>> Ninja.objects.create(dojo_id=e,first_name="Sven",last_name="Soren")
+<Ninja: Ninja object (7)>
+>>> Ninja.objects.create(dojo_id=e,first_name="Noah",last_name="Loren")
+  File "<console>", line 1
+    Ninja.objects.create(dojo_id=e,first_name="Noah",last_name="Loren")
+                                                                       ^
+SyntaxError: invalid syntax
+>>>
+>>> Ninja.objects.create(dojo_id=e,first_name="Noah",last_name="Loren")
+<Ninja: Ninja object (8)>
+>>> Ninja.objects.create(dojo_id=e,first_name="Jack",last_name="Evans")
+  File "<console>", line 1
+    Ninja.objects.create(dojo_id=e,first_name="Jack",last_name="Evans")
+                                                                       ^
+SyntaxError: invalid syntax
+>>> Ninja.objects.create(dojo_id=e,first_name="Jack",last_name="Evans")
+<Ninja: Ninja object (9)>
+>>> c.ninjas.all()
+<QuerySet [<Ninja: Ninja object (1)>, <Ninja: Ninja object (2)>, <Ninja: Ninja object (3)>]>
+>>> e.ninjas.all()
+<QuerySet [<Ninja: Ninja object (7)>, <Ninja: Ninja object (8)>, <Ninja: Ninja object (9)>]>
+>>> a = Ninja.objects.get(id=9)
+>>> a.dojo_id
+<Dojo: Dojo object (6)>
+>>> exit()
+  File "<console>", line 1
+    exit()
+    ^
+SyntaxError: invalid syntax
+>>>       0 [sig] bash 1541! sigpacket::process: Suppressing signal 18 to win32 process (pid 0)
+
+>>> 18468918 [sig] bash 1541! sigpacket::process: Suppressing signal 18 to win32 process (pid 0)
+
+>>> help
+Type help() for interactive help, or help(object) for help about object.
+>>> exit
+Use exit() or Ctrl-Z plus Return to exit
+>>> exit()
+(py3django)
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ python manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojo without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> old dojo
+Invalid input: unexpected EOF while parsing (<string>, line 1)
+>>> "old dojo"
+Migrations for 'dojoninapp':
+  dojoninapp\migrations\0002_dojo_desc.py
+    - Add field desc to dojo
+(py3django)
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojoninapp, sessions, userapp
+Running migrations:
+  Applying dojoninapp.0002_dojo_desc... OK
+(py3django)
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ python manage.py shell
+Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:54:40) [MSC v.1900 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from dojoninapp.models import *
+  File "<console>", line 1
+    from dojoninapp.models import *
+                            ^
+SyntaxError: invalid syntax
+>>> from dojoninapp.models import *
+>>> Dojo.objects.create(name="anotherdojo",city="Dojoville",state="FL",desc="New Dojo")
+<Dojo: Dojo object (7)>
+>>>

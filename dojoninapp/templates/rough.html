@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Users Database</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="activities">
+                <div>
+                    <h1>Add a Dojo</h1>
+                    <form action="adddojo" method="POST">
+                        {% csrf_token %}
+                        <label>
+                            Name
+                            <input type="text" name="dojoname" />
+                        </label>
+                        <br />
+                        <label>
+                            City
+                            <input type="text" name="dojocity" />
+                        </label>
+                        <br />
+                        <label>
+                            State
+                            <input type="text" name="dojostate" />
+                        </label>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+                <div>
+                    <h1>Add a Ninja</h1>
+                    <form action="addninja" method="POST">
+                        {% csrf_token %}
+                        <label>
+                            First Name
+                            <input type="text" name="first_name" />
+                        </label>
+                        <br />
+                        <label>
+                            Last Name
+                            <input type="text" name="last_name" />
+                        </label>
+                        <br />
+                        <label
+                            >Dojo
+                            <select name="dojoid" id="dojos">
+                                {% for dojo in dojos %}
+                                <option value="{{dojo.id}}">{{dojo.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div id="main">
+                <h3>Dojos</h3>
+                <ul>
+                    {% for dojo in dojos %}
+                    <li>
+                        {{dojo.name}} <a href="deletedojo/{{dojo.id}}">Delete (very permanent)</a>
+                        <ul>
+                            {% for ninja in dojo.ninjas.all %}
+                            <li>{{ninja.first_name}} {{ninja.last_name}}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+    </body>
+</html>

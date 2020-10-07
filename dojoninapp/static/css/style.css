@@ -34,12 +34,11 @@ div {
 }
 
 #main {
-    flex-direction: column;
-    /* justify-content: space-between; */
+    justify-content: space-between;
 }
 
 #activities {
-    
+    flex-direction: column;
     background-color: var(--secbackground);
 }
 
