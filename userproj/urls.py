@@ -18,5 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('userapp.urls')),
-    path('nin/', include('dojoninapp.urls'))
+    path('nin/', include('dojoninapp.urls')),
+    path('booksandauthors/', include('booksapp.urls'))
 ]

@@ -1,0 +1,136 @@
+(py3django)
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ python manage.py makemigrations
+Migrations for 'booksapp':
+  booksapp\migrations\0001_initial.py
+    - Create model Book
+    - Create model Author
+(py3django)
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, booksapp, contenttypes, dojoninapp, sessions, userapp
+Running migrations:
+  Applying booksapp.0001_initial... OK
+(py3django)
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ python manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 07, 2020 - 16:29:05
+Django version 2.2.4, using settings 'userproj.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+(py3django)
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ python manage.py shell
+Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:54:40) [MSC v.1900 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from bookapp.models import *
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+ModuleNotFoundError: No module named 'bookapp'
+>>> from booksapp.models import *
+  File "<console>", line 1
+    from booksapp.models import *
+    ^
+SyntaxError: invalid syntax
+>>> from booksapp.models import *
+>>> Book.objects.create(title="C Sharp",desc="stuff about csharp")
+<Book: Book object (1)>
+>>> Book.objects.create(title="Java",desc="stuff about java")
+<Book: Book object (2)>
+>>> Book.objects.create(title="Python",desc="stuff about snakes")
+<Book: Book object (3)>
+>>> Book.objects.create(title="PHP",desc="stuff about PHP")
+<Book: Book object (4)>
+>>> Book.objects.create(title="Ruby",desc="stuff about Ruby")
+<Book: Book object (5)>
+>>> Author.objects.create(first_name="Jane",last_name="Austen")
+  File "<console>", line 1
+SyntaxError: keyword argument repeated
+>>> Author.objects.create(first_name="Jane",last_name="Austen")
+<Author: Author object (1)>
+>>> Author.objects.create(first_name="Emily",last_name="Dickinson")
+<Author: Author object (2)>
+>>> Author.objects.create(first_name="Fyodor",last_name="Dostoevsky")
+<Author: Author object (3)>
+>>> Author.objects.create(first_name="William",last_name="Shakespeare")
+<Author: Author object (4)>
+>>> Author.objects.create(first_name="Lau",last_name="Tzu")
+<Author: Author object (5)>
+>>> exit()
+(py3django)
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ python manage.py makemigrations
+You are trying to add a non-nullable field 'notes' to author without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> 'notes go here'
+Migrations for 'booksapp':
+  booksapp\migrations\0002_author_notes.py
+    - Add field notes to author
+(py3django)
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, booksapp, contenttypes, dojoninapp, sessions, userapp
+Running migrations:
+  Applying booksapp.0002_author_notes... OK
+(py3django)
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ from booksapp.models import *
+bash: from: command not found
+(py3django)
+Jaxem@DESKTOP-SB5RFPC MINGW64 /c/CodingDojo/Pythonstack/Django/dj-fund/userproj (master)
+$ python manage.py shell
+Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:54:40) [MSC v.1900 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from booksapp.models import *
+>>> a = Book.objects.get(id=1)
+>>> a.title="C#"
+>>> a.save()
+>>> l = Author.objects.get(id=4)
+>>> l.first_name="Bill"
+>>> l.save()
+>>> b = Book.objects.get(id=2)
+  File "<console>", line 1
+    b = Book.objects.get(id=2)
+    ^
+SyntaxError: invalid syntax
+>>> b = Book.objects.get(id=2)
+>>> c = Book.objects.get(id=3)
+>>> d = Book.objects.get(id=4)
+>>> e = Book.objects.get(id=5)
+>>> i = Author.objects.get(id=1)
+>>> j = Author.objects.get(id=2)
+>>> k = Author.objects.get(id=3)
+>>> m = Author.objects.get(id=5)
+>>> i.books.add(a,b)
+>>> j.books.add(a,b,c)
+>>> k.books.add(a,b,c,d)
+>>> l.books.add(a,b,c,d,e)
+>>> c.authors
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x0000021296B6ABE0>
+>>> c.authors.all()
+<QuerySet [<Author: Author object (2)>, <Author: Author object (3)>, <Author: Author object (4)>]>
+>>> c.authors.remove(j)
+>>> b.authors.add(m)
+>>> Book.objects.filter(authors=k)
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>]>
+>>> Book.objects.authors.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'authors'
+>>> e.authors.all()
+<QuerySet [<Author: Author object (4)>]>
+>>>
